@@ -1,21 +1,23 @@
 from google_play_scraper import reviews_all, Sort
 import pandas as pd
 
-def scrape_facebook_reviews():
-    # Scrape Facebook reviews dari Google Play Store
+def scrape_quora_reviews():
+    # Scrape ulasan dari aplikasi Quora di Google Play Store
     reviews = reviews_all(
-        'com.facebook.katana',  # ID aplikasi Facebook
-        lang='id',              
-        country='id',           
-        sort=Sort.MOST_RELEVANT,
-        count=3000,
-        filter_score_with=None
+        'com.quora.android',  # ID aplikasi Quora
+        lang='id',            # Bahasa ulasan
+        country='id',         # Negara
+        sort=Sort.MOST_RELEVANT,  # Urutan ulasan
+        count=3000,          # Jumlah maksimum ulasan yang ingin diambil
+        filter_score_with=None  # Tidak memfilter berdasarkan skor
     )
 
     # Simpan hasil ke CSV
     df = pd.DataFrame(reviews)
-    df.to_csv('facebook_reviews.csv', index=False)
-    print(f"Scraped {len(df)} Facebook reviews and saved to facebook_reviews.csv")
+    df.to_csv('Quora_reviews.csv', index=False, encoding='utf-8')
+    
+    # Menampilkan jumlah ulasan yang diambil
+    print(f"Scraped {len(df)} Quora reviews and saved to Quora_reviews.csv")
 
 if __name__ == "__main__":
-    scrape_facebook_reviews()
+    scrape_quora_reviews()
